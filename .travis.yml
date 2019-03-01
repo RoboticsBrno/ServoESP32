@@ -58,6 +58,7 @@ env:
     - PLATFORMIO_CI_SRC=examples/01-SimpleServo 
     - PLATFORMIO_CI_SRC=examples/02-ServoPotentiometer
     - PLATFORMIO_CI_SRC=examples/03-MultipleServos
+    - PLATFORMIO_CI_SRC=examples/04-SimpleServoAngles
 
 install:
     - pip install -U platformio

@@ -77,6 +77,19 @@ public:
      * @param pin Pin connected to the servo pulse wave input. This
      *            pin must be capable of PWM output (all ESP32 pins).
      *
+     * @param channel Channel which is set to ESP32 Arduino function ledcSetup().
+     *                Channel must be number between 0 - 15.
+     *                It is possible to use automatic channel setup with constant
+     *                Servo::CHANNEL_NOT_ATTACHED.
+     * 
+     * @param minAngle Target angle (in degrees) associated with
+     *                 minPulseWidth.  Defaults to
+     *                 MIN_ANGLE = 0.
+     *
+     * @param maxAngle Target angle (in degrees) associated with
+     *                 maxPulseWidth.  Defaults to
+     *                 MAX_ANGLE = 180.
+     *  
      * @param minPulseWidth Minimum pulse width to write to pin, in
      *                      microseconds.  This will be associated
      *                      with a minAngle degree angle.  Defaults to
@@ -86,14 +99,6 @@ public:
      *                      microseconds.  This will be associated
      *                      with a maxAngle degree angle. Defaults to
      *                      MAX_PULSE_WIDTH = 2400.
-     *
-     * @param minAngle Target angle (in degrees) associated with
-     *                 minPulseWidth.  Defaults to
-     *                 MIN_ANGLE = 0.
-     *
-     * @param maxAngle Target angle (in degrees) associated with
-     *                 maxPulseWidth.  Defaults to
-     *                 MAX_ANGLE = 180.
      *
      * @sideeffect May set pinMode(pin, PWM).
      *
