@@ -21,7 +21,7 @@ bool attach(
 );
 ```
 
-More information in [source code documentation](https://github.com/RoboticsBrno/ESP32-Arduino-Servo-Library/blob/master/src/Servo.h#L73).
+More information in [source code documentation](https://github.com/RoboticsBrno/ESP32-Arduino-Servo-Library/blob/master/src/ESP32ArduinoServo.h#L73).
 
 Example: [04-SimpleServoAngles](examples/04-SimpleServoAngles/04-SimpleServoAngles.ino)
 

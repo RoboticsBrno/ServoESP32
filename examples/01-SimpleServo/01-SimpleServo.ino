@@ -1,4 +1,4 @@
-#include <Servo.h>
+#include <ESP32ArduinoServo.h>
 
 static const int servoPin = 4;
 
