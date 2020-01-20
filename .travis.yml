@@ -56,6 +56,12 @@ cache:
         - "~/arduino_ide"
         - "~/.arduino15/packages/"
 
+addons:
+  apt:
+    packages:
+      - python3
+      - python3-pip
+
 env:
     - PLATFORMIO_CI_SRC=examples/01-SimpleServo 
     - PLATFORMIO_CI_SRC=examples/02-ServoPotentiometer
