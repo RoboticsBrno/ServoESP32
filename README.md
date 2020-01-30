@@ -1,6 +1,6 @@
-# ESP32-Arduino-Servo-Library [![Build Status](https://travis-ci.org/RoboticsBrno/ESP32-Arduino-Servo-Library.svg?branch=master)](https://travis-ci.org/RoboticsBrno/ESP32-Arduino-Servo-Library)
+# ServoESP32 [![Build Status](https://travis-ci.org/RoboticsBrno/ESP32-Arduino-Servo-Library.svg?branch=master)](https://travis-ci.org/RoboticsBrno/ESP32-Arduino-Servo-Library)
 
-Generate RC servo signal on a selected pin.
+Generate RC servo signal on a selected pins with ESP32 device and Arduino framework.
 
 Base on [servo library for stm32f4 (d2a4a47)](https://github.com/arduino-libraries/Servo/blob/master/src/stm32f4/ServoTimers.h).
 

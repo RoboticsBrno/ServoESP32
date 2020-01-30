@@ -1,13 +1,13 @@
 {
   "name": "ServoESP32",
   "keywords": "servo, esp32",
-  "description": "Generate RC servo signal on a selected pin.",
-  "homepage": "https://www.arduino.cc/en/Reference/Servo",
+  "description": "Generate RC servo signal on a selected pins with ESP32 device and Arduino framework.",
+  "homepage": "https://github.com/RoboticsBrno/ServoESP32/",
   "license": "MIT",
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/RoboticsBrno/ESP32-Arduino-Servo-Library.git"
+    "url": "https://github.com/RoboticsBrno/ServoESP32.git"
   },
   "authors":
   {
@@ -16,7 +16,7 @@
       "url": "http://www.robotikabrno.cz",
       "maintainer": true
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "frameworks": "arduino",
   "platforms": "espressif32"
 }
