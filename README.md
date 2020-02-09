@@ -1,4 +1,4 @@
-# ServoESP32 [![Build Status](https://travis-ci.org/RoboticsBrno/ESP32-Arduino-Servo-Library.svg?branch=master)](https://travis-ci.org/RoboticsBrno/ESP32-Arduino-Servo-Library)
+# ServoESP32 [![Build Status](https://travis-ci.org/RoboticsBrno/ServoESP32.svg?branch=master)](https://travis-ci.org/RoboticsBrno/ServoESP32)
 
 Generate RC servo signal on a selected pins with ESP32 device and Arduino framework.
 
