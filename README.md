@@ -28,3 +28,13 @@ Example: [04-SimpleServoAngles](examples/04-SimpleServoAngles/04-SimpleServoAngl
 ## PlatformIO
 
 This library is also available at the [PlatformIO](https://platformio.org) as [ServoESP32](http://platformio.org/lib/show/1739/ServoESP32).
+
+## Arduino IDE
+
+This library is available in Arduino IDE Library Manager as `ServoESP32`.
+
+## Known issues
+
+### Problem with build in Arduino IDE 1.8.10
+
+There was an [issue](https://github.com/arduino/arduino-cli/pull/565) with building this library in Arduino IDE 1.8.10. But this issue should be fixed in Arduino IDE 1.8.11.
