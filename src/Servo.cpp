@@ -77,6 +77,7 @@ bool Servo::detach() {
         channel_next_free--;
 
     ledcDetachPin(_pin);
+    _pin = PIN_NOT_ATTACHED;
     return true;
 }
 
