@@ -42,9 +42,9 @@ Servo::~Servo() {
     detach();
 }
 
-bool Servo::attach(int pin, int channel, 
-                   int minAngle, int maxAngle, 
-                   int minPulseWidth, int maxPulseWidth) 
+bool Servo::attach(int pin, int channel,
+                   int minAngle, int maxAngle,
+                   int minPulseWidth, int maxPulseWidth)
 {
     if(channel == CHANNEL_NOT_ATTACHED) {
         if(channel_next_free == CHANNEL_MAX_NUM) {
@@ -62,7 +62,7 @@ bool Servo::attach(int pin, int channel,
     _minPulseWidth = minPulseWidth;
     _maxPulseWidth = maxPulseWidth;
 
-    ledcSetup(_channel, 50, 16); // channel X, 50 Hz, 16-bit depth
+    ledcSetup(_channel, 50, std::min(16, SOC_LEDC_TIMER_BIT_WIDE_NUM)); // channel X, 50 Hz, 16-bit depth or chip max
     ledcAttachPin(_pin, _channel);
     return true;
 }
