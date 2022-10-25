@@ -40,11 +40,11 @@ class Servo {
     // are part of the public API; DO NOT CHANGE THEM.
     static const int MIN_ANGLE = 0;
     static const int MAX_ANGLE = 180;
-    
+
     static const int MIN_PULSE_WIDTH = 544;     // the shortest pulse sent to a servo
     static const int MAX_PULSE_WIDTH = 2400;     // the longest pulse sent to a servo
-    static const int MAX_COMPARE = ((1 << 16) - 1); // 65535
-    
+    static const int MAX_COMPARE = ((1 << std::min(16, SOC_LEDC_TIMER_BIT_WIDE_NUM)) - 1);
+
     static const int TAU_MSEC = 20;
     static const int TAU_USEC = (TAU_MSEC * 1000);
 
@@ -55,7 +55,7 @@ public:
 
     // Pin number of unattached pins
     static const int PIN_NOT_ATTACHED = -1;
-    
+
     /**
      * @brief Construct a new Servo instance.
      *
@@ -81,7 +81,7 @@ public:
      *                Channel must be number between 0 - 15.
      *                It is possible to use automatic channel setup with constant
      *                Servo::CHANNEL_NOT_ATTACHED.
-     * 
+     *
      * @param minAngle Target angle (in degrees) associated with
      *                 minPulseWidth.  Defaults to
      *                 MIN_ANGLE = 0.
@@ -89,7 +89,7 @@ public:
      * @param maxAngle Target angle (in degrees) associated with
      *                 maxPulseWidth.  Defaults to
      *                 MAX_ANGLE = 180.
-     *  
+     *
      * @param minPulseWidth Minimum pulse width to write to pin, in
      *                      microseconds.  This will be associated
      *                      with a minAngle degree angle.  Defaults to
@@ -104,8 +104,8 @@ public:
      *
      * @return true if successful, false when pin doesn't support PWM.
      */
-    bool attach(int pin, int channel = CHANNEL_NOT_ATTACHED, 
-                int minAngle = MIN_ANGLE, int maxAngle = MAX_ANGLE, 
+    bool attach(int pin, int channel = CHANNEL_NOT_ATTACHED,
+                int minAngle = MIN_ANGLE, int maxAngle = MAX_ANGLE,
                 int minPulseWidth = MIN_PULSE_WIDTH, int maxPulseWidth = MAX_PULSE_WIDTH);
 
     /**
@@ -155,7 +155,7 @@ public:
      * @see Servo::attach()
      */
     int readMicroseconds();
-    
+
     /**
      * @brief Check if this instance is attached to a servo.
      * @return true if this instance is attached to a servo, false otherwise.
