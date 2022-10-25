@@ -34,6 +34,8 @@
 
 #include "Arduino.h"
 
+#define MAX_COMPARE ((1 << std::min(16, SOC_LEDC_TIMER_BIT_WIDE_NUM)) - 1)
+
 class Servo {
     // Default min/max pulse widths (in microseconds) and angles (in
     // degrees).  Values chosen for Arduino compatibility.  These values
@@ -43,7 +45,6 @@ class Servo {
 
     static const int MIN_PULSE_WIDTH = 544;     // the shortest pulse sent to a servo
     static const int MAX_PULSE_WIDTH = 2400;     // the longest pulse sent to a servo
-    static const int MAX_COMPARE = ((1 << std::min(16, SOC_LEDC_TIMER_BIT_WIDE_NUM)) - 1);
 
     static const int TAU_MSEC = 20;
     static const int TAU_USEC = (TAU_MSEC * 1000);
