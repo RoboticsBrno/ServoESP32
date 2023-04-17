@@ -8,7 +8,7 @@ Base on [servo library for stm32f4 (d2a4a47)](https://github.com/arduino-librari
 
 The interface is similar to Arduino/Servo: https://www.arduino.cc/en/Reference/Servo
 
-But the function `atach()` is different:
+But the function `attach()` is different:
 
 ```c
 bool attach(
