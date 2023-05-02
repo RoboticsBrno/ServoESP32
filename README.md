@@ -14,17 +14,21 @@ But the function `attach()` is different:
 bool attach(
     int pin,
     int channel = CHANNEL_NOT_ATTACHED,
-    int minAngle = MIN_ANGLE,
-    int maxAngle = MAX_ANGLE,
-    int minPulseWidth = MIN_PULSE_WIDTH,
-    int maxPulseWidth = MAX_PULSE_WIDTH,
+    int minAngle = DEFAULT_MIN_ANGLE,
+    int maxAngle = DEFAULT_MAX_ANGLE,
+    int minPulseWidthUs = DEFAULT_MIN_PULSE_WIDTH_US,
+    int maxPulseWidthUs = DEFAULT_MAX_PULSE_WIDTH_US,
     int frequency = DEFAULT_FREQUENCY
 );
 ```
 
-More information in [source code documentation](https://github.com/RoboticsBrno/ESP32-Arduino-Servo-Library/blob/master/src/Servo.h#L73).
+More information in [source code documentation](src/Servo.h).
 
 Example: [04-SimpleServoAngles](examples/04-SimpleServoAngles/04-SimpleServoAngles.ino)
+
+There are also a ServoFloat and ServoDouble variant available. Use one of these when working in radians. 
+
+Example: : [05-SimpleServoRadians](examples/05-SimpleServoRadians/05-SimpleServoRadians.ino)
 
 ## PlatformIO
 
