@@ -53,9 +53,7 @@ class Servo {
     static const int MIN_PULSE_WIDTH = 544;   // the shortest pulse sent to a servo
     static const int MAX_PULSE_WIDTH = 2400;  // the longest pulse sent to a servo
 
-    static const int FREQUENCY = 50;
-
-    static const int PERIOD_US = 1000000 / FREQUENCY;
+    static const int DEFAULT_FREQUENCY = 50;
 
     static const int TIMER_RESOLUTION = std::min(16, SOC_LEDC_TIMER_BIT_WIDE_NUM);
     static const int PERIOD_TICKS = (1 << TIMER_RESOLUTION) - 1;
@@ -105,13 +103,17 @@ class Servo {
      *                        microseconds.  This will be associated
      *                        with a maxAngle degree angle. Defaults to
      *                        MAX_PULSE_WIDTH = 2400.
+     * 
+     * @param frequency Frequency in hz to send PWM at.
+     *                  Defaults to DEFAULT_FREQUENCY.
      *
      * @sideeffect May set pinMode(pin, PWM).
      *
      * @return true if successful, false when pin doesn't support PWM.
      */
     bool attach(int pin, int channel = CHANNEL_NOT_ATTACHED, int minAngle = MIN_ANGLE, int maxAngle = MAX_ANGLE,
-                int minPulseWidthUs = MIN_PULSE_WIDTH, int maxPulseWidthUs = MAX_PULSE_WIDTH);
+                int minPulseWidthUs = MIN_PULSE_WIDTH, int maxPulseWidthUs = MAX_PULSE_WIDTH,
+                int frequency = DEFAULT_FREQUENCY);
 
     /**
      * @brief Stop driving the servo pulse train.
@@ -179,8 +181,8 @@ class Servo {
    private:
     void _resetFields(void);
 
-    int _usToTicks(int us) { return std::round((PERIOD_TICKS * us) / PERIOD_US); }
-    int _ticksToUs(int duty) { return std::round((PERIOD_US * duty) / PERIOD_TICKS); }
+    int _usToTicks(int us) { return std::round((PERIOD_TICKS * us) / _periodUs); }
+    int _ticksToUs(int duty) { return std::round((_periodUs * duty) / PERIOD_TICKS); }
     int _usToAngle(int us) { return map(us, _minPulseWidthUs, _maxPulseWidthUs, _minAngle, _maxAngle); }
     int _angleToUs(int angle) { return map(angle, _minAngle, _maxAngle, _minPulseWidthUs, _maxPulseWidthUs); }
 
@@ -190,4 +192,5 @@ class Servo {
     int _channel;
     int _minPulseWidthUs, _maxPulseWidthUs;
     int _minAngle, _maxAngle;
+    int _periodUs;
 };

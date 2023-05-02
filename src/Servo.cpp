@@ -42,7 +42,12 @@ Servo::~Servo() {
     detach();
 }
 
-bool Servo::attach(int pin, int channel, int minAngle, int maxAngle, int minPulseWidthUs, int maxPulseWidthUs) {
+bool Servo::attach(int pin, int channel, int minAngle, int maxAngle, int minPulseWidthUs, int maxPulseWidthUs,
+                   int frequency) {
+    int tempPeriodUs = std::round(1000000.0 / frequency);
+    if (tempPeriodUs <= maxPulseWidthUs) {
+        return false;
+    }
     if (channel == CHANNEL_NOT_ATTACHED) {
         if (channel_next_free == LEDC_CHANNELS) {
             return false;
@@ -58,8 +63,9 @@ bool Servo::attach(int pin, int channel, int minAngle, int maxAngle, int minPuls
     _maxAngle = maxAngle;
     _minPulseWidthUs = minPulseWidthUs;
     _maxPulseWidthUs = maxPulseWidthUs;
+    _periodUs = tempPeriodUs;
 
-    ledcSetup(_channel, FREQUENCY, TIMER_RESOLUTION);
+    ledcSetup(_channel, frequency, TIMER_RESOLUTION);
     ledcAttachPin(_pin, _channel);
     return true;
 }
@@ -119,4 +125,5 @@ void Servo::_resetFields(void) {
     _maxAngle = MAX_ANGLE;
     _minPulseWidthUs = MIN_PULSE_WIDTH;
     _maxPulseWidthUs = MAX_PULSE_WIDTH;
+    _periodUs = 1000000 / DEFAULT_FREQUENCY;
 }

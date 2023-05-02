@@ -17,7 +17,8 @@ bool attach(
     int minAngle = MIN_ANGLE,
     int maxAngle = MAX_ANGLE,
     int minPulseWidth = MIN_PULSE_WIDTH,
-    int maxPulseWidth = MAX_PULSE_WIDTH
+    int maxPulseWidth = MAX_PULSE_WIDTH,
+    int frequency = DEFAULT_FREQUENCY
 );
 ```
 
