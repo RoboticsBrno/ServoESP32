@@ -26,10 +26,12 @@
 
 /**
  * Arduino srl - www.arduino.org
- * Base on lib for stm32f4 (d2a4a47): https://github.com/arduino-libraries/Servo/blob/master/src/stm32f4/ServoTimers.h
+ * Base on lib for stm32f4 (d2a4a47):
+ * https://github.com/arduino-libraries/Servo/blob/master/src/stm32f4/ServoTimers.h
  * 2017 Jul 5: Edited by Jaroslav Páral (jarekparal) - paral@robotikabrno.cz
  */
 
+// clang-format off
 #pragma once
 
 #include "Arduino.h"
@@ -51,8 +53,8 @@ class ServoTemplate : public ServoBase {
 #endif
    public:
     /**
-     * Default min/max pulse widths (in microseconds) and angles 
-     * (in degrees).  Values chosen for Arduino compatibility. 
+     * Default min/max pulse widths (in microseconds) and angles
+     * (in degrees).  Values chosen for Arduino compatibility.
      * These values  are part of the public API; DO NOT CHANGE THEM.
      */
     static constexpr int DEFAULT_MIN_ANGLE = 0;
@@ -111,7 +113,7 @@ class ServoTemplate : public ServoBase {
      *                        microseconds.  This will be associated
      *                        with a maxAngle angle. Defaults to
      *                        DEFAULT_MAX_PULSE_WIDTH_US = 2400.
-     * 
+     *
      * @param frequency Frequency in hz to send PWM at.
      *                  Defaults to DEFAULT_FREQUENCY.
      *
@@ -207,7 +209,7 @@ class ServoTemplate : public ServoBase {
      *
      * @see ServoTemplate::attach()
      */
-    T read() { return _usToAngle(readMicroseconds()); }
+    T read() const { return _usToAngle(readMicroseconds()); }
 
     /**
      * Get the current pulse width, in microseconds.  This will
@@ -215,7 +217,7 @@ class ServoTemplate : public ServoBase {
      *
      * @see ServoTemplate::attach()
      */
-    int readMicroseconds() {
+    int readMicroseconds() const {
         if (!this->attached()) {
             return 0;
         }
@@ -250,7 +252,7 @@ class ServoTemplate : public ServoBase {
         _periodUs = 1000000 / DEFAULT_FREQUENCY;
     }
 
-    T mapTemplate(T x, T in_min, T in_max, T out_min, T out_max) {
+    T mapTemplate(T x, T in_min, T in_max, T out_min, T out_max) const {
         if constexpr (std::is_floating_point_v<T>) {
             return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
         } else {
@@ -259,10 +261,10 @@ class ServoTemplate : public ServoBase {
         }
     }
 
-    int _usToTicks(int us) { return std::round((PERIOD_TICKS * us) / _periodUs); }
-    int _ticksToUs(int duty) { return std::round((_periodUs * duty) / PERIOD_TICKS); }
-    T _usToAngle(int us) { return mapTemplate((T)us, (T)_minPulseWidthUs, (T)_maxPulseWidthUs, _minAngle, _maxAngle); }
-    int _angleToUs(T angle) {
+    int _usToTicks(int us) const { return std::round((PERIOD_TICKS * us) / _periodUs); }
+    int _ticksToUs(int duty) const { return std::round((_periodUs * duty) / PERIOD_TICKS); }
+    T _usToAngle(int us) const { return mapTemplate((T)us, (T)_minPulseWidthUs, (T)_maxPulseWidthUs, _minAngle, _maxAngle); }
+    int _angleToUs(T angle) const {
         return (int)mapTemplate(angle, _minAngle, _maxAngle, _minPulseWidthUs, _maxPulseWidthUs);
     }
 
