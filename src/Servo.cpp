@@ -62,7 +62,14 @@ bool Servo::attach(int pin, int channel,
     _minPulseWidth = minPulseWidth;
     _maxPulseWidth = maxPulseWidth;
 
-    ledcSetup(_channel, 50, 16); // channel X, 50 Hz, 16-bit depth
+    #ifdef CONFIG_IDF_TARGET_ESP32C3
+        // the ESP32-C3 can not use 50Hz
+        ledcSetup(_channel, 200, std::min(16, SOC_LEDC_TIMER_BIT_WIDE_NUM)); // channel X, 200 Hz, 16-bit depth or chip max
+    #else
+        // all other ESP32
+        ledcSetup(_channel, 50, std::min(16, SOC_LEDC_TIMER_BIT_WIDE_NUM)); // channel X, 50 Hz, 16-bit depth or chip max
+    #endif
+
     ledcAttachPin(_pin, _channel);
     return true;
 }
