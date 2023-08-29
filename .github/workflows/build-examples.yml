@@ -1,0 +1,23 @@
+name: PlatformIO Example Build CI
+
+on: [push]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        example:
+          - examples/01-SimpleServo
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python
+        uses: actions/setup-python@v1
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install platformio
+      - name: Build examples
+        run: platformio ci --lib="." --project-conf="./platformio.ini"
+        env:
+          PLATFORMIO_CI_SRC: ${{ matrix.example }}
