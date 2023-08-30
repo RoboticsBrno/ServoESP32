@@ -30,6 +30,27 @@ There are also a ServoFloat and ServoDouble variant available. Use one of these 
 
 Example: : [05-SimpleServoRadians](examples/05-SimpleServoRadians/05-SimpleServoRadians.ino)
 
+### IMPORTANT INFO
+According testings, the frequency for ESP32 S2/S3/C3 has to be set at least to 200 Hz. Here is an example, how to set just frequency:
+
+```cpp
+Servo servo1;
+const int servoPin = 4;
+const int frequency = 200; // Hz
+
+servo1.attach(
+    servoPin, 
+    Servo::CHANNEL_NOT_ATTACHED, 
+    Servo::DEFAULT_MIN_ANGLE, 
+    Servo::DEFAULT_MAX_ANGLE, 
+    Servo::DEFAULT_MIN_PULSE_WIDTH_US, 
+    Servo::DEFAULT_MAX_PULSE_WIDTH_US, 
+    frequency
+);
+```
+
+For more information look at the [PR25](https://github.com/RoboticsBrno/ServoESP32/pull/25) 
+
 ## PlatformIO
 
 This library is also available at the [PlatformIO](https://platformio.org) as [ServoESP32](https://platformio.org/lib/show/1739/ServoESP32).
